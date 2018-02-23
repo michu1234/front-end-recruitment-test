@@ -1,0 +1,307 @@
+/* Table of contents
+=====================
+// 1. Variables
+// 2. Placeholders
+// 3. Functions
+// 4. Font Faces
+// 5. Base
+// 6. Layout
+// 7. Block + element
+// 8. Modifier
+// 9. State
+// 10. Animations
+=====================
+*/
+
+// 1. Variables
+$main_website: rgb(48, 63, 159);
+$main_background: #f2f2f2;
+$light_background: #ffffff;
+$main_button: #6bd400;
+$header_font: #000000;
+$label_font: #515356;
+$input_font: #9b9b9b;
+$input_border: #dadada;
+$input-submit_border: #5cb300;
+$grid-template_mobile: "sum" auto 
+                        "info" auto 
+                        "payments" auto / auto;
+$grid-template_desktop: "info sum" 1fr
+                         "payments ." 1fr / 2fr 1fr;
+$grid-template_screen: ". info sum ." 1fr 
+                        ". payments . ." 1fr / auto 2fr 1fr auto;
+// 2. Placeholders
+%text--center {
+  text-align: center;
+}
+
+%border-radius {
+  border-radius: 4px;
+}
+
+%box--center {
+  margin: 0 auto;
+}
+
+%numbers {
+  margin-left: -25px;
+  vertical-align: top;
+  padding-right: 5px;
+  font-size: 1.8rem;
+  font-weight: 400;
+}
+
+%flex {
+  display: flex;
+}
+
+%pointer {
+  cursor: pointer;
+}
+
+%transition {
+  transition: all 0.2s ease-in-out;
+}
+
+// 3. Functions
+@function prc($el, $target) {
+  @return (100% * $el) / $target;
+}
+
+// 4. Font Faces
+// @font-face {
+//     font-family: Rubik;
+//     src: url("assets/fonts/Rubik-Regular.ttf");
+// }
+
+// 5. Base
+h6 {
+  margin-left: 25px;
+  font-size: 1.1rem;
+  color: $header_font;
+  position: relative;
+  font-weight: 700;
+  .checkout__info &::before {
+    content: "❶";
+    @extend %numbers;
+  }
+  .checkout__payments &:before {
+    content: "❷";
+    @extend %numbers;
+  }
+}
+
+table {
+  @extend %box--center;
+  min-width: 16rem;
+  width: 90%;
+  font-size: 1.2rem;
+  padding: 5px 1% 5px 1%;
+}
+
+table:first-child {
+  padding-bottom: 25px;
+}
+
+thead td {
+  padding: 15px 0 15px 0;
+}
+
+td {
+  padding: 5px 0 5px 0;
+}
+
+td:nth-child(even) {
+  @extend %flex;
+  justify-content: flex-end;
+}
+
+aside {
+  border: 1px dashed $input_font;
+  @extend %border-radius;
+  @extend %flex;
+  flex-direction: column;
+  padding-bottom: 45px;
+}
+
+input, select {
+  outline: 0;
+  color: $input_font;
+  padding-left: 10px;
+  padding-top: 20px;
+  font-size: 1.3rem;
+  width: calc(100% - 10px);
+  height: 30px;
+  margin-bottom: 20px;
+  border: none;
+  background: $light_background;
+  border-bottom: 2px solid $input_border;
+  @extend %border-radius;
+  transition: all 0.2s ease-in-out;
+  appearance: none;
+}
+
+select {
+    width: 100%;
+    height: 50px;
+}
+
+input[type=submit] {
+  height: 50px;
+  width: 100%;
+  padding:  0;
+  background: $main_button;
+  color: $light_background;
+  border-bottom-color: $input-submit_border;
+  position: absolute;
+  &:hover {
+    background: lighten($main_button, $amount: 3%)
+  }
+  &:active {
+    border-bottom: 0;
+    margin-top: 4px;
+    will-change: border;
+  }
+}
+
+fieldset {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+// 6. Layout
+#checkout {
+  font-size: 62.5%;
+  display: grid;
+  grid-template: $grid-template_mobile;
+  padding: 50px 5% 100px 5%;
+}
+
+// 7. Block + element
+.checkout__sum {
+  @extend %border-radius;
+  color: $header_font;
+  background: $light_background;
+  padding: 5px;
+}
+
+.checkout__info {
+  grid-area: info;
+}
+
+.checkout__info-country::after {
+    content: " ";
+    width: 13px; 
+    height: 10px;
+    background: url('../../images/css_sprites.png') -41px -57px;
+    top: 18px;
+    right: 15px;
+    position: absolute;
+    display: inline-block;
+}
+
+.checkout__payments {
+  grid-area: payments;
+}
+
+.checkout__payments-header::after {
+    content: " ";
+    width: 20px; 
+    height: 20px;
+    background: url('../../images/css_sprites.png') -10px -57px;
+    top: 4px;
+    left: 175px;
+    position: absolute;
+    display: inline-block;
+}
+
+.checkout__payments-card::after {
+    content: " ";
+    width: 43px; 
+    height: 27px;
+    background: url('../../images/css_sprites.png') -10px -10px;
+    top: 10px;
+    right: 15px;
+    position: absolute;
+    display: inline-block;
+}
+
+.checkout__payments-security::after {
+    content: " ";
+    width: 20px; 
+    height: 20px;
+    background: url('../../images/css_sprites.png') -73px -10px;
+    top: 13px;
+    right: 15px;
+    position: absolute;
+    display: inline-block;
+}
+
+.checkout__sum-tax {
+  border-top: 1px dashed $input_font;
+  border-bottom: 1px dashed $input_font;
+}
+
+.checkout__submit {
+  height: 50px;
+  position: relative;
+}
+
+.form-label {
+  fieldset {
+    position: relative;
+  }
+  label {
+    position: absolute;
+    top: 5px;
+    left: 10px;
+    font-size: 12px;
+    color: #000000;
+    transform: translate3d(0, 0, 0);
+    @extend %transition;
+  }
+}
+
+.form-css-label {
+  input {
+    &[data-empty="false"]+label,
+    &:valid+label,
+    &:focus+label {
+      color: $input_font;
+      font-weight: 700;
+      font-size: 12px;
+      transform: translate3d(0, -5px, 0);
+    }
+  }
+}
+
+.form-js-label {
+  input, select {
+    &[data-empty="false"],
+    &:focus {
+      padding: 22px 8px 10px;
+    }
+    &:focus {
+      outline: 0;
+      background: rgba(255, 255, 255, 1);
+    }
+    &[data-empty="false"]+label,
+    &:focus+label {
+      color: #5856D6;
+      font-weight: 700;
+      font-size: 12px;
+      transform: translate3d(0, -10px, 0);
+    }
+  }
+}
+
+// 8. Modifier
+.font--bold {
+  font-weight: 700;
+}
+
+.font--large {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
