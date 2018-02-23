@@ -18,25 +18,34 @@ $main_website: rgb(48, 63, 159);
 $main_background: #f2f2f2;
 $light_background: #ffffff;
 $main_button: #6bd400;
+
 $header_font: #000000;
 $label_font: #515356;
 $input_font: #9b9b9b;
+
 $input_border: #dadada;
 $input-submit_border: #5cb300;
+
 $grid-template_mobile: "sum" auto 
                         "info" auto 
                         "payments" auto / auto;
-$grid-template_desktop: "info sum" 1fr
-                         "payments ." 1fr / 2fr 1fr;
-$grid-template_screen: ". info sum ." 1fr 
-                        ". payments . ." 1fr / auto 2fr 1fr auto;
+$grid-template_tablet: "info sum" minmax(auto, 500px)
+                         "payments ." auto / 2fr 1fr;
+
+$grid-template_desktop: "info sum" auto 
+                        "payments ." auto / 2fr 1fr;
+                       
+$tablet: "(min-width: 768px) and (max-width: 1023px)";
+$desktop: "(min-width: 1024px) and (max-width: 1423px)";
+$screen: "(min-width: 1424px)";
+
 // 2. Placeholders
 %text--center {
   text-align: center;
 }
 
 %border-radius {
-  border-radius: 4px;
+  border-radius: 5px;
 }
 
 %box--center {
@@ -89,6 +98,11 @@ h6 {
     content: "❷";
     @extend %numbers;
   }
+  @media #{$tablet} {
+    & {
+        margin-left: 0;
+    }
+  }
 }
 
 table {
@@ -96,7 +110,7 @@ table {
   min-width: 16rem;
   width: 90%;
   font-size: 1.2rem;
-  padding: 5px 1% 5px 1%;
+  padding: 5px 2px 5px 2px;
 }
 
 table:first-child {
@@ -108,7 +122,7 @@ thead td {
 }
 
 td {
-  padding: 5px 0 5px 0;
+  padding: 5px 5px 5px 5px;
 }
 
 td:nth-child(even) {
@@ -117,10 +131,10 @@ td:nth-child(even) {
 }
 
 aside {
-  border: 1px dashed $input_font;
-  @extend %border-radius;
   @extend %flex;
+  @extend %border-radius;
   flex-direction: column;
+  border: 1px dashed $input_font;
   padding-bottom: 45px;
 }
 
@@ -176,14 +190,58 @@ fieldset {
   display: grid;
   grid-template: $grid-template_mobile;
   padding: 50px 5% 100px 5%;
+
+  @media #{$tablet} {
+    & {
+        grid-template: $grid-template_tablet;
+        grid-column-gap: 15px;
+    }
+  }
+
+  @media #{$desktop} {
+    & {
+        grid-template: $grid-template_desktop;
+        grid-column-gap: 15px;
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+  }
+  @media #{$screen} {
+    & {
+        grid-template: $grid-template_desktop;
+        grid-column-gap: 15px;
+        max-width: 1600px;
+        margin: 0 auto;
+    }
+  }
 }
 
 // 7. Block + element
 .checkout__sum {
   @extend %border-radius;
   color: $header_font;
-  background: $light_background;
-  padding: 5px;
+
+  @media #{$tablet} {
+    & {
+        margin-top: 63px;
+    }
+  }
+  @media #{$desktop} {
+    & {
+        margin-top: 63px;
+    }
+  }
+  @media #{$screen} {
+    & {
+        margin-top: 63px;
+    }
+  }
+}
+
+.checkout__sum-container {
+    background: $light_background;
+    padding: 5px 5px 5px 5px;
+    @extend %border-radius;
 }
 
 .checkout__info {

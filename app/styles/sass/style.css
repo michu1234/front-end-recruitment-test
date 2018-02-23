@@ -13,8 +13,8 @@
 // 10. Animations
 =====================
 */
-aside, input, select, .checkout__sum {
-  border-radius: 4px;
+aside, input, select, .checkout__sum, .checkout__sum-container {
+  border-radius: 5px;
 }
 
 table {
@@ -53,11 +53,17 @@ h6 {
   content: "❷";
 }
 
+@media (min-width: 768px) and (max-width: 1023px) {
+  h6 {
+    margin-left: 0;
+  }
+}
+
 table {
   min-width: 16rem;
   width: 90%;
   font-size: 1.2rem;
-  padding: 5px 1% 5px 1%;
+  padding: 5px 2px 5px 2px;
 }
 
 table:first-child {
@@ -69,7 +75,7 @@ thead td {
 }
 
 td {
-  padding: 5px 0 5px 0;
+  padding: 5px 5px 5px 5px;
 }
 
 td:nth-child(even) {
@@ -77,8 +83,8 @@ td:nth-child(even) {
 }
 
 aside {
-  border: 1px dashed #9b9b9b;
   flex-direction: column;
+  border: 1px dashed #9b9b9b;
   padding-bottom: 45px;
 }
 
@@ -136,10 +142,56 @@ fieldset {
   padding: 50px 5% 100px 5%;
 }
 
+@media (min-width: 768px) and (max-width: 1023px) {
+  #checkout {
+    grid-template: "info sum" minmax(auto, 500px) "payments ." auto/2fr 1fr;
+    grid-column-gap: 15px;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1423px) {
+  #checkout {
+    grid-template: "info sum" auto "payments ." auto/2fr 1fr;
+    grid-column-gap: 15px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+}
+
+@media (min-width: 1424px) {
+  #checkout {
+    grid-template: "info sum" auto "payments ." auto/2fr 1fr;
+    grid-column-gap: 15px;
+    max-width: 1600px;
+    margin: 0 auto;
+  }
+}
+
 .checkout__sum {
   color: #000000;
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  .checkout__sum {
+    margin-top: 63px;
+  }
+}
+
+@media (min-width: 1024px) and (max-width: 1423px) {
+  .checkout__sum {
+    margin-top: 63px;
+  }
+}
+
+@media (min-width: 1424px) {
+  .checkout__sum {
+    margin-top: 63px;
+  }
+}
+
+.checkout__sum-container {
   background: #ffffff;
-  padding: 5px;
+  padding: 5px 5px 5px 5px;
 }
 
 .checkout__info {
