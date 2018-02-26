@@ -72,5 +72,105 @@
     });
   }
 
-  // Your custom JavaScript goes here
 })();
+
+
+// regex patterns
+var lettersOnly = /^[a-zA-Z\s]+$/;
+var numbersOnly = /[0-9]/;
+var expDate = /[0-9]{2}\/[0-9]{2}/;
+var cardNumb = /[0-9]{4}-[0-9]{4}-[0-9]{4}-[0-9]{4}/;
+var emailOnly = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    
+
+// user input data
+var payForm = document.myForm;
+var userName = payForm.firstName;
+var userSurname = payForm.surname;
+var userEmail = payForm.email;
+var userCode = payForm.postalCode;
+var userTelephone = payForm.telephone;
+var userCard = payForm.creditcard;
+var userSecCode = payForm.securitycode;
+var userExpDate = payForm.expirationdate;
+var subButton = payForm.submit;
+
+function displayIt() {
+
+// name validation
+if (userName.value===null || userName.value===""){  
+    userSecCode.setCustomValidity("Please, type your name");
+    userName.parentNode.classList.add("alert");
+ 
+  }else if(!lettersOnly.test(userName.value)){
+    userName.setCustomValidity("I expect only letters here");
+    userName.parentNode.classList.add("alert");
+} 
+
+// last name 
+if (userSurname.value===null || userSurname.value===""){  
+    userSecCode.setCustomValidity("Please, type your name");
+    userSurname.parentNode.classList.add("alert");
+  }else if(!lettersOnly.test(userSurname.value)){
+    userSurname.setCustomValidity("I expect only letters here");
+    userSurname.parentNode.classList.add("alert");
+} 
+
+// email
+if (userEmail.value===null || userEmail.value===""){  
+    userEmail.setCustomValidity("Please, type your email");
+    userEmail.parentNode.classList.add("alert");
+ 
+  }else if(!emailOnly.test(userEmail.value)){
+    userEmail.setCustomValidity("I expect only email adress here");
+    userEmail.parentNode.classList.add("alert");
+} 
+
+// postal code
+if (userCode.value===null || userCode.value===""){  
+    userCode.setCustomValidity("Please, type your postal code");
+    userCode.parentNode.classList.add("alert");
+ 
+  }else if(!numbersOnly.test(userCode.value)){
+    userCode.setCustomValidity("I expect only numbers here");
+    userCode.parentNode.classList.add("alert");
+}
+
+// telephone
+if (userTelephone.value===null || userTelephone.value===""){  
+    userTelephone.setCustomValidity("Please, type your security code");
+    userTelephone.parentNode.classList.add("alert");
+}else if(!numbersOnly.test(userTelephone.value)){
+    userTelephone.setCustomValidity("I expect only numbers here");
+    userTelephone.parentNode.classList.add("alert");
+}
+
+// credit card
+if (userCard.value===null || userCard.value===""){  
+    userCard.setCustomValidity("Please, type your credit card number");
+    userCard.parentNode.classList.add("alert");
+}else if(!cardNumb.test(userCard.value)){
+    userCard.setCustomValidity("I expect different format here");
+    userCard.parentNode.classList.add("alert");
+}
+
+// password validation
+if (userSecCode.value===null || userSecCode.value===""){  
+    userSecCode.setCustomValidity("Please, type your security code");
+    userSecCode.parentNode.classList.add("alert");
+}else if(!numbersOnly.test(userSecCode.value)){
+    userSecCode.setCustomValidity("I expect only numbers here");
+    userSecCode.parentNode.classList.add("alert");
+}
+
+// expiration date
+if (userExpDate.value===null || userExpDate.value===""){  
+    userExpDate.setCustomValidity("Please, type your expiration date");
+    userExpDate.parentNode.classList.add("alert");
+}else if(!expDate.test(userExpDate.value)){
+    userExpDate.setCustomValidity("I expect different format here");
+    userExpDate.parentNode.classList.add("alert");
+}
+}
+
+subButton.addEventListener("click", displayIt);

@@ -20,17 +20,17 @@ $light_background: #ffffff;
 $main_button: #6bd400;
 
 $header_font: #000000;
-$label_font: #515356;
+$label_font: #505256;
 $input_font: #9b9b9b;
 
 $input_border: #dadada;
 $input-submit_border: #5cb300;
 
 $grid-template_mobile: "sum" auto 
-                        "info" auto 
-                        "payments" auto / auto;
+                       "info" auto 
+                       "payments" auto / auto;
 $grid-template_tablet: "info sum" minmax(auto, 500px)
-                         "payments ." auto / 2fr 1fr;
+                       "payments ." auto / 2fr 1fr;
 
 $grid-template_desktop: "info sum" auto 
                         "payments ." auto / 2fr 1fr;
@@ -42,6 +42,14 @@ $screen: "(min-width: 1424px)";
 // 2. Placeholders
 %text--center {
   text-align: center;
+}
+
+%position-absolute {
+  position: absolute;
+}
+
+%display-inlineblock {
+  display: inline-block;
 }
 
 %border-radius {
@@ -157,7 +165,7 @@ input, select {
 
 select {
     width: 100%;
-    height: 50px;
+    height: 53px;
 }
 
 input[type=submit] {
@@ -167,7 +175,7 @@ input[type=submit] {
   background: $main_button;
   color: $light_background;
   border-bottom-color: $input-submit_border;
-  position: absolute;
+  @extend %position-absolute;
   &:hover {
     background: lighten($main_button, $amount: 3%)
   }
@@ -184,12 +192,16 @@ fieldset {
   border: 0;
 }
 
+label {
+  font-weight: 700;
+}
+
 // 6. Layout
 #checkout {
-  font-size: 62.5%;
   display: grid;
   grid-template: $grid-template_mobile;
   padding: 50px 5% 100px 5%;
+  font: 62.5% Arial, Tahoma, sans-serif;
 
   @media #{$tablet} {
     & {
@@ -217,6 +229,24 @@ fieldset {
 }
 
 // 7. Block + element
+.checkout__container {
+  @media #{$desktop} {
+    & {
+        display: flex;
+        justify-content: space-between;
+    }
+    & fieldset {
+      width: 49%;
+    }
+  }
+  @media #{$screen} {
+    & {
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+}
+
 .checkout__sum {
   @extend %border-radius;
   color: $header_font;
@@ -255,8 +285,8 @@ fieldset {
     background: url('../../images/css_sprites.png') -41px -57px;
     top: 18px;
     right: 15px;
-    position: absolute;
-    display: inline-block;
+    @extend %position-absolute;
+    @extend %display-inlineblock;
 }
 
 .checkout__payments {
@@ -270,8 +300,8 @@ fieldset {
     background: url('../../images/css_sprites.png') -10px -57px;
     top: 4px;
     left: 175px;
-    position: absolute;
-    display: inline-block;
+    @extend %position-absolute;
+    @extend %display-inlineblock;
 }
 
 .checkout__payments-card::after {
@@ -281,7 +311,7 @@ fieldset {
     background: url('../../images/css_sprites.png') -10px -10px;
     top: 10px;
     right: 15px;
-    position: absolute;
+    @extend %position-absolute;
     display: inline-block;
 }
 
@@ -292,8 +322,8 @@ fieldset {
     background: url('../../images/css_sprites.png') -73px -10px;
     top: 13px;
     right: 15px;
-    position: absolute;
-    display: inline-block;
+    @extend %position-absolute;
+    @extend %display-inlineblock;
 }
 
 .checkout__sum-tax {
@@ -311,11 +341,10 @@ fieldset {
     position: relative;
   }
   label {
-    position: absolute;
+    @extend %position-absolute;
     top: 5px;
     left: 10px;
     font-size: 12px;
-    color: #000000;
     transform: translate3d(0, 0, 0);
     @extend %transition;
   }
@@ -355,6 +384,11 @@ fieldset {
 }
 
 // 8. Modifier
+.alert {
+  color: red !important;
+  font-weight: 700;
+}
+
 .font--bold {
   font-weight: 700;
 }
