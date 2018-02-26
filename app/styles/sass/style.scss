@@ -382,26 +382,6 @@ label {
   }
 }
 
-.form-js-label {
-  input, select {
-    &[data-empty="false"],
-    &:focus {
-      padding: 22px 8px 10px;
-    }
-    &:focus {
-      outline: 0;
-      background: rgba(255, 255, 255, 1);
-    }
-    &[data-empty="false"]+label,
-    &:focus+label {
-      color: #5856D6;
-      font-weight: 700;
-      font-size: 12px;
-      transform: translate3d(0, -10px, 0);
-    }
-  }
-}
-
 // 8. Modifier
 .alert {
   color: red !important;

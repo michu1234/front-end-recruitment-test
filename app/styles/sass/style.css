@@ -313,24 +313,6 @@ label {
   transform: translate3d(0, -5px, 0);
 }
 
-.form-js-label input[data-empty="false"], .form-js-label input:focus, .form-js-label select[data-empty="false"], .form-js-label select:focus {
-  padding: 22px 8px 10px;
-}
-
-.form-js-label input:focus, .form-js-label select:focus {
-  outline: 0;
-  background: white;
-}
-
-.form-js-label input[data-empty="false"] + label,
-.form-js-label input:focus + label, .form-js-label select[data-empty="false"] + label,
-.form-js-label select:focus + label {
-  color: #5856D6;
-  font-weight: 700;
-  font-size: 12px;
-  transform: translate3d(0, -10px, 0);
-}
-
 .alert {
   color: red !important;
   font-weight: 700;
